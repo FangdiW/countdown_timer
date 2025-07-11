@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown with Sound</title>
+    <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: rows;
+      align-items: center;
+      gap: 10px;
+    }
+	.wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    label, input, button, h1 {
+      font-size: 18px;
+    }
+
+    input {
+      padding: 5px;
+      width: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+	  <div class="container">
+		  <label for="onesession">Session duration:</label>
+		  <input type="number" id="onesession" min="1" value="5" />
+		  
+		  <label for="sessionnum">Number of Sessions:</label>
+		  <input type="number" id="sessionnum" min="1" value="10" />
+	  </div>
+	  
+	  
+	  <div class="container">
+		  <button onclick="startCountdown()">Start Countdown</button>
+		  
+			<h1 id="timer">50</h1>
+	  </div>
+  </div>
+  <audio id="beep" preload="auto">
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <audio id="tick" preload="auto">
+    <source src="ticking-1s.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function startCountdown() {
+	  const onesession = document.getElementById("onesession");
+      let sessionDuration = isNaN(parseInt(onesession.value, 10)) ? parseInt(onesession.value, 10):5;
+	  console.log(onesession);
+	  
+	  const sessionnum = document.getElementById("sessionnum");
+      let sessions = isNaN(parseInt(sessionnum.value, 10)) ? parseInt(sessionnum.value, 10):10;
+	  console.log(sessionnum);
+	  
+      const timerEl = document.getElementById("timer");
+      const beep = document.getElementById("beep");
+      const tick = document.getElementById("tick");
+	  
+	  let seconds = sessionDuration * sessions;
+	  console.log(seconds);
+
+      timerEl.textContent = seconds;
+
+      const countdown = setInterval(() => {
+        seconds--;
+        timerEl.textContent = seconds;
+
+        if (seconds <= 0 || isNaN(seconds)) {
+          clearInterval(countdown);
+          beep.play();  // ✅ Works after click
+        }
+		else if (seconds % sessionDuration ===0 ) {
+		  beep.play();
+		}
+		else {
+		  tick.play();
+		  }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
