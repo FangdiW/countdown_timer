@@ -82,11 +82,11 @@
   <script>
     function startCountdown() {
 	  const onesession = document.getElementById("onesession");
-      let sessionDuration = isNaN(parseInt(onesession.value, 10)) ? parseInt(onesession.value, 10):5;
+      let sessionDuration = isNaN(parseInt(onesession.value, 10)) ? 5: parseInt(onesession.value, 10);
 	  console.log(onesession);
 	  
 	  const sessionnum = document.getElementById("sessionnum");
-      let sessions = isNaN(parseInt(sessionnum.value, 10)) ? parseInt(sessionnum.value, 10):10;
+      let sessions = isNaN(parseInt(sessionnum.value, 10)) ? 10: parseInt(sessionnum.value, 10);
 	  console.log(sessionnum);
 	  
       const timerEl = document.getElementById("timer");
