@@ -69,7 +69,7 @@
 	  <div class="container">
 		  
 		  <label for="sessionnum">Number of Sessions:</label>
-		  <input type="number" id="sessionnum" min="1" value="10" />
+		  <input type="number" id="sessionnum" min="1" value="20" />
 	  </div>
 	  
 	  
@@ -92,11 +92,11 @@
   <script>
     function startCountdown() {
 	  const onesession = document.getElementById("onesession");
-      let sessionDuration = isNaN(parseInt(onesession.value, 10)) ? 5:parseInt(onesession.value, 10);
+      let sessionDuration = isNaN(parseInt(onesession.value, 10)) ? 5:parseInt(onesession.value, 10); // parseInt(value, radix) radix = 10 means decimal
 	  console.log(onesession);
 	  
 	  const sessionnum = document.getElementById("sessionnum");
-      let sessions = isNaN(parseInt(sessionnum.value, 10)) ? 10: parseInt(sessionnum.value, 10);
+      let sessions = isNaN(parseInt(sessionnum.value, 10)) ? 20: parseInt(sessionnum.value, 10); 
 	  console.log('Session', sessionnum);
 	  
       const timerEl = document.getElementById("timer");
@@ -127,3 +127,4 @@
   </script>
 </body>
 </html>
+
